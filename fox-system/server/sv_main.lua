@@ -1,0 +1,2 @@
+Citizen.CreateThread(function()
+end)
