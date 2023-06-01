@@ -4,14 +4,16 @@ Locales = {}
 
 -- English localization
 Locales["en"] = {
-    -- Debug:
-    ["no_mysql_connection"] = "^8[DEBUG]: Please make sure you have a database connection!"
+    -- Errors:
+    ["error_mysql"] = "^1[ERROR]: Please make sure you have a database connection!",
+    ["error_scriptname"] = "^1[ERROR]: Dont rename the Script Folder!"
 }
 
 -- German localization
 Locales["de"] = {
-    -- Debug:
-    ["no_mysql_connection"] = "^8[DEBUG]: Bitte Stelle Sicher, dass du eine Datenbankverbindung hast!"
+    -- Errors:
+    ["error_mysql"] = "^1[ERROR]: Bitte Stelle Sicher, dass du eine Datenbankverbindung hast!",
+    ["error_scriptname"] = "^1[ERROR]: Bitte nenne den Script Ordner nicht um!"
 }
 
 LocalizedStrings = Locales[Config.Language]
