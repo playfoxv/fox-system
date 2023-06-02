@@ -7,17 +7,17 @@ version '1.0.0' -- Version for the mod
 
 -- What to run
 client_scripts {
-    'client/*.lua'
+    'client/*.lua' -- Client scripts
 }
 
 server_scripts {
-    'server/*.lua'
+    'server/*.lua' -- Server scripts
 }
 
 shared_scripts {
-    '@oxmysql/lib/MySQL.lua',
-    '@ox_lib/init.lua',
-    'shared/*.lua'
+    '@oxmysql/lib/MySQL.lua', -- Oxmysql installed
+    '@ox_lib/init.lua', -- Ox_lib installed
+    'shared/*.lua' -- Shared scripts
 }
 
 dependencies {
