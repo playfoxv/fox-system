@@ -1,14 +1,17 @@
-function CheckFrameworkKey(key)
+function CheckFrameworkKey(key, name)
     local endpoint = "http://185.94.29.161:3000/check-key"
 
     local requestData = {
-        key = key
+        key = key,
+        server = name
     }
 
     PerformHttpRequest(endpoint, function(errorCode, resultData, resultHeaders)
         if errorCode == 200 then
+            -- Key ist gültig
             StartScriptLogic()
         else
+            -- Key ist ungültig
             print(LocalizedStrings["error_api"])
 
             if Config.DiscordWebhook and Config.DebugWebhook then
@@ -23,6 +26,8 @@ function CheckFrameworkKey(key)
     end, "POST", json.encode(requestData), { ["Content-Type"] = "application/json" })
 end
 
+
+-- Script Logic
 function StartScriptLogic()
     print(LocalizedStrings["valid_api"])
 
@@ -48,6 +53,7 @@ function SendWebhookMessage(title, message)
     }
 
     PerformHttpRequest(Config.Webhook, function(errorCode, resultData, resultHeaders)
+        -- Du kannst das Ergebnis hier bearbeiten, wenn erforderlich
     end, "POST", json.encode(webhookData), { ["Content-Type"] = "application/json" })
 end
 
@@ -57,12 +63,14 @@ Citizen.CreateThread(function()
     if resourceName == "fox_framework" then
         local hasSqlConnection = false
 
+        -- Überprüfe, ob oxmysql existiert
         if exports.oxmysql then
             hasSqlConnection = true
         end
 
         if hasSqlConnection then
-            CheckFrameworkKey(Config.Key)
+            -- Key-Request
+            CheckFrameworkKey(Config.Key, Config.Name)
         else
             print(LocalizedStrings["error_mysql"])
 
